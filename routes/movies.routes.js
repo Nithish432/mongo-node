@@ -1,9 +1,10 @@
 import express from "express";
+import {auth} from "../middleware/auth.js"
 import { getAllMovies,getMovieById,createMovies,deleteMovieById,updateMovieById } from "../services/movies.service.js";
 const router = express.Router();
 
 // /movies - Display all movie data
-// send -> JSON
+// send -> JSON // add "/", auth, async
 router.get("/", async function (request, response) {
     // db.movies.find({ language : "tamil", name: "Vikram", rating: 8.4 })
   
@@ -18,7 +19,7 @@ router.get("/", async function (request, response) {
     response.send(movies);
   });
   
-  // /movies/:id
+  // /movies/:id // add "/:id", auth, async
   router.get("/:id", async function (request, response) {
     const { id } = request.params;
     // db.movies.findOne({id: "101" })
@@ -43,7 +44,7 @@ router.get("/", async function (request, response) {
     response.send(result);
   });
   
-  // /movies/:id
+  // /movies/:id  // add "/:id", auth, async
   router.delete("/:id", async function (request, response) {
     const { id } = request.params;
     // db.movies.deleteOne({id: "101" })

@@ -2,6 +2,9 @@
 import express from "express"; // "type": "module"
 import { MongoClient } from "mongodb";
 import moviesRouter from "./routes/movies.routes.js";
+import usersRouter from "./routes/users.routes.js";
+import cors from 'cors';
+import bcrypt from "bcrypt";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -20,13 +23,27 @@ console.log("Mongo is connected ✌️😊");
 
 // express.json() - middleware (inbuilt) | Converts data to JSON
 app.use(express.json());
+app.use(cors()); // 3rd party middleware
 
 app.get("/", function (request, response) {
   response.send("Hello, world yooo");
 });
 
 app.use("/movies", moviesRouter)
+app.use("/users", usersRouter)
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+
+
+// hashing password,
+async function genHashedPassword(password) {
+  const NO_OF_ROUNDS = 10;
+  const salt = await bcrypt.genSalt(NO_OF_ROUNDS); //random string
+  const hashedPassword = await bcrypt.hash(password, salt);
+  console.log(salt);
+  console.log(hashedPassword);
+}
+
+genHashedPassword("password@123");
 
 export { client };
