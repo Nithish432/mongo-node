@@ -24,11 +24,11 @@ router.get("/", async function (request, response) {
     const { id } = request.params;
     // db.movies.findOne({id: "101" })
   
-    // console.log(id);
+    console.log(id);
     // const movie = movies.find((mv) => mv.id == id);
     const movie = await getMovieById(id);
       // .findOne({ name: { $regex: /vikram/i }});
-    // console.log(movie);
+    console.log(movie);
     movie
       ? response.send(movie)
       : response.status(404).send({ msg: "Movie not found" });
