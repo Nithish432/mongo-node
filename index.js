@@ -12,6 +12,7 @@ dotenv.config();
 console.log(process.env.MONGO_URL); // env -> environment variables
 
 const app = express();
+app.use(cors()); // 3rd party middleware
 
 const PORT = process.env.PORT;
 
@@ -24,7 +25,6 @@ console.log("Mongo is connected ✌️😊");
 
 // express.json() - middleware (inbuilt) | Converts data to JSON
 app.use(express.json());
-app.use(cors()); // 3rd party middleware
 
 app.get("/", function (request, response) {
   response.send("Hello, world yooo");
