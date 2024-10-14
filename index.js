@@ -79,7 +79,7 @@ app.use("/users", usersRouter)
 //   response.send(result);
 // });
 
-// app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
 
 
 // // hashing password,
