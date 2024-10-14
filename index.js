@@ -2,6 +2,7 @@
 import express from "express"; // "type": "module"
 import { MongoClient } from "mongodb";
 import moviesRouter from "./routes/movies.routes.js";
+import usersRouter from "./routes/users.routes.js";
 
 import cors from 'cors';
 
@@ -30,7 +31,7 @@ app.get("/", function (request, response) {
 });
 
 app.use("/movies", moviesRouter)
-// app.use("/users", usersRouter)
+app.use("/users", usersRouter)
 
 // /mobiles
 
